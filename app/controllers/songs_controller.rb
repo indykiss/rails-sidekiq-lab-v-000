@@ -1,6 +1,11 @@
 class SongsController < ApplicationController
   require 'csv'
 
+  def upload
+    SongsWorker.perform_async(params[:file].path)
+    redirect_to songs_path
+  end
+
   def index
     @songs = Song.all
   end
@@ -21,11 +26,6 @@ class SongsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def upload
-    SongsWorker.perform_async(params[:file].path)
-    redirect_to songs_path
   end
 
   def edit
