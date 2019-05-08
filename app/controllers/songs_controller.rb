@@ -4,7 +4,7 @@ class SongsController < ApplicationController
 
   def perform(song)
     CSV.foreach(song, headers: true) do |song|
-      Song.create(name: song[0], artist_id: song[1])
+      Song.create(name: song[0], artist_name: song[1])
     end
   end
 
