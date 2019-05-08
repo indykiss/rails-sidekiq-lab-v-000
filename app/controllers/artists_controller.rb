@@ -7,7 +7,7 @@ class ArtistsController < ApplicationController
 
   def upload
     LeadsWorker.perform_async(params[:leads].path)
-    redirect_to customers_path
+    redirect_to artists_path
   end
 
   def new
