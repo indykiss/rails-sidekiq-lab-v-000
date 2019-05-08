@@ -2,8 +2,8 @@ class SongsController < ApplicationController
   require 'csv'
   include Sidekiq::Worker
 
-  def perform(song)
-    CSV.foreach(song, headers: true) do |song|
+  def perform(songs_file)
+    CSV.foreach(songs_file, headers: true) do |song|
       Song.create(name: song[0], artist_name: song[1])
     end
   end
