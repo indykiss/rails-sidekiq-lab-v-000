@@ -1,5 +1,6 @@
 class SongsController < ApplicationController
   require 'csv'
+  include Sidekiq::Worker
 
   def index
     @songs = Song.all
@@ -59,4 +60,3 @@ class SongsController < ApplicationController
     params.require(:song).permit(:title, :artist_name)
   end
 end
-
